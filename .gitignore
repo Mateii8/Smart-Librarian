@@ -1,6 +1,0 @@
-backend/.env
-backend/chroma_db/
-.venv/
-.idea/
-__pycache__/
-*.pyc
