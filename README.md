@@ -111,13 +111,13 @@ python -m uvicorn api:app --reload
 Backend:
 
 ```text
-http://127.0.0.1:8000
+localhost
 ```
 
 Swagger:
 
 ```text
-http://127.0.0.1:8000/docs
+localhost/docs
 ```
 
 ### Frontend
