@@ -1,7 +1,7 @@
 from openai import OpenAI
 import chromadb
 
-from backend.src.config import (
+from src.config import (
     OPENAI_API_KEY,
     EMBEDDING_MODEL,
     CHROMA_PATH

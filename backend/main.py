@@ -1,6 +1,6 @@
-from backend.src import ask
-from backend.src.data_loader import load_book_summaries
-from backend.src import (
+from src.chatbot import ask
+from src.data_loader import load_book_summaries
+from src.vector_store import (
     index_books,
     collection_is_empty
 )
@@ -11,9 +11,7 @@ def main():
 
     if collection_is_empty():
         print("Indexing books...")
-
         index_books(books)
-
     else:
         print("Books are already indexed.")
 

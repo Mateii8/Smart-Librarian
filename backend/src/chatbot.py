@@ -2,15 +2,15 @@ import json
 
 from openai import OpenAI
 
-from backend.src.config import (
+from src.config import (
     OPENAI_API_KEY,
     GPT_MODEL
 )
-from backend.src.tools import (
+from src.tools import (
     GET_SUMMARY_TOOL,
     get_summary_by_title
 )
-from backend.src.vector_store import search_books
+from src.vector_store import search_books
 
 
 client = OpenAI(api_key=OPENAI_API_KEY)

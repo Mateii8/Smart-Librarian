@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from backend.src.config import DATA_PATH
+from src.config import DATA_PATH
 
 
 def load_book_summaries():
