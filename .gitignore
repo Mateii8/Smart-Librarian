@@ -1,18 +1,6 @@
-# created by virtualenv automatically
-*
-
-#Environment variables (API keys)
 .env
-
-# ChromaDB
 chroma_db/
-
-# Virtual environment
 .venv/
-
-# PyCharm
 .idea/
-
-# Python cache
 __pycache__/
 *.pyc
