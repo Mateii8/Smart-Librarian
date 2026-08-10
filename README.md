@@ -1,83 +1,98 @@
 # 📚 Smart Librarian
 
-Smart Librarian is an AI-powered book recommendation system built with Python, OpenAI, and ChromaDB.
+Smart Librarian is an AI-powered book recommendation application built with **Python, FastAPI, React, OpenAI and ChromaDB**.
 
-The application uses Retrieval-Augmented Generation (RAG) together with OpenAI Function Calling to recommend books based on user interests and provide detailed summaries.
+The application recommends books based on the user's interests using **Retrieval-Augmented Generation (RAG)** and uses **Tool Calling** to retrieve a detailed summary of the recommended book.
 
----
+## ✨ Features
 
-# Features
+- Semantic book search with ChromaDB
+- OpenAI embeddings using `text-embedding-3-small`
+- GPT-powered book recommendations
+- RAG (Retrieval-Augmented Generation)
+- Tool Calling with `get_summary_by_title()`
+- Detailed summaries stored locally in JSON
+- FastAPI REST backend
+- React + Vite frontend
+- CLI version also available
 
-- Semantic search using ChromaDB
-- OpenAI Embeddings (`text-embedding-3-small`)
-- AI book recommendations using GPT
-- Function Calling for detailed summaries
-- Local JSON knowledge base
-- Command Line Interface (CLI)
+## 🛠 Technologies
 
----
-
-# Technologies
-
-- Python 3.13+
+**Backend**
+- Python
+- FastAPI
 - OpenAI API
 - ChromaDB
-- Streamlit (optional)
-- JSON
-- Markdown
 
----
+**Frontend**
+- React
+- Vite
+- JavaScript
+- CSS
+- React Markdown
 
-# Project Structure
+## 🧠 How it works
 
-```
-Smart Librarian
-│
-├── data/
-│   ├── book_summaries.md
-│   └── book_summaries.json
-│
-├── src/
-│   ├── chatbot.py
-│   ├── config.py
-│   ├── data_loader.py
-│   ├── tools.py
-│   └── vector_store.py
-│
-├── chroma_db/
-│
-├── main.py
-├── requirements.txt
-├── README.md
-└── .env.example
+```text
+User Question
+      ↓
+OpenAI Embedding
+      ↓
+ChromaDB Semantic Search
+      ↓
+Relevant Books
+      ↓
+GPT Recommendation
+      ↓
+get_summary_by_title()
+      ↓
+Detailed Summary
+      ↓
+Final Response
 ```
 
----
+Short book descriptions and themes are stored in `book_summaries.md` and used for semantic search.
 
-# How it works
+Detailed summaries are stored in `book_summaries.json` and retrieved through Tool Calling after GPT selects a book.
 
-1. Books are loaded from `book_summaries.md`.
-2. OpenAI generates embeddings for every book.
-3. Embeddings are stored in ChromaDB.
-4. The user's question is converted into an embedding.
-5. ChromaDB retrieves the most relevant books.
-6. GPT recommends the best matching book.
-7. GPT automatically calls `get_summary_by_title()`.
-8. The detailed summary is returned to the user.
+## 📁 Project Structure
 
----
+```text
+Smart-Librarian/
+│
+├── backend/
+│   ├── data/
+│   │   ├── book_summaries.md
+│   │   └── book_summaries.json
+│   │
+│   ├── src/
+│   │   ├── chatbot.py
+│   │   ├── config.py
+│   │   ├── data_loader.py
+│   │   ├── tools.py
+│   │   └── vector_store.py
+│   │
+│   ├── api.py
+│   ├── main.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   └── package.json
+│
+├── .gitignore
+└── README.md
+```
 
-# Installation
+## 🚀 Running the project
 
-Clone the repository:
+### Backend
 
 ```bash
-git clone <repository-url>
-```
-
-Install dependencies:
-
-```bash
+cd backend
 pip install -r requirements.txt
 ```
 
@@ -87,50 +102,71 @@ Create a `.env` file:
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-Run:
+Start FastAPI:
 
 ```bash
-python main.py
+python -m uvicorn api:app --reload
 ```
 
----
+Backend:
 
-# Example Questions
-
-- I want a fantasy adventure.
-- Recommend a book about war.
-- I like books about justice.
-- I want a story about friendship and magic.
-- Recommend a dystopian novel.
-
----
-
-# AI Workflow
-
-```
-User Question
-        │
-        ▼
-OpenAI Embedding
-        │
-        ▼
-ChromaDB Search
-        │
-        ▼
-Relevant Books
-        │
-        ▼
-GPT Recommendation
-        │
-        ▼
-Function Calling
-        │
-        ▼
-Detailed Summary
-        │
-        ▼
-Final Response
+```text
+http://127.0.0.1:8000
 ```
 
----
+Swagger:
 
+```text
+http://127.0.0.1:8000/docs
+```
+
+### Frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Both backend and frontend must be running at the same time.
+
+## 💬 Example questions
+
+- `I want a fantasy story with magic and friendship.`
+- `Recommend a book about war.`
+- `I like books about justice.`
+- `I want something about freedom and social control.`
+- `Recommend a dystopian novel.`
+
+## 🔑 Environment
+
+The OpenAI API key is stored in the backend `.env` file and is never exposed to the React frontend.
+
+Use `.env.example` as a template:
+
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+## 📌 Assignment Requirements
+
+The project implements the main requirements of the Smart Librarian assignment:
+
+- 10+ books knowledge base
+- ChromaDB vector store
+- OpenAI embeddings
+- Semantic retrieval
+- GPT integration
+- RAG
+- `get_summary_by_title()` tool
+- OpenAI Tool Calling
+- CLI interface
+- Browser interface with React + FastAPI
