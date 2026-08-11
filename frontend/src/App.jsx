@@ -1,11 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import "./App.css";
 
 function App() {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [chats, setChats] = useState(() => {
+    const savedChats = localStorage.getItem("smart-librarian-chats");
+
+    return savedChats ? JSON.parse(savedChats) : [];
+  });
+
+  const [activeChatId, setActiveChatId] = useState(null);
+
+  const activeChat = chats.find(
+    (chat) => chat.id === activeChatId
+  );
+
+  useEffect(() => {
+    localStorage.setItem(
+      "smart-librarian-chats",
+      JSON.stringify(chats)
+    );
+  }, [chats]);
+
+  const createNewChat = () => {
+    const newChat = {
+      id: Date.now(),
+      title: "New conversation",
+      messages: [],
+    };
+
+    setChats((previousChats) => [
+      newChat,
+      ...previousChats,
+    ]);
+
+    setActiveChatId(newChat.id);
+    setMessage("");
+  };
+
+  const deleteChat = (chatId) => {
+    setChats((previousChats) =>
+      previousChats.filter((chat) => chat.id !== chatId)
+    );
+
+    if (activeChatId === chatId) {
+      setActiveChatId(null);
+    }
+  };
 
   const sendMessage = async () => {
     const trimmedMessage = message.trim();
@@ -14,15 +58,49 @@ function App() {
       return;
     }
 
+    let currentChatId = activeChatId;
+
+    if (!currentChatId) {
+      const newChat = {
+        id: Date.now(),
+        title: trimmedMessage.slice(0, 30),
+        messages: [],
+      };
+
+      currentChatId = newChat.id;
+
+      setChats((previousChats) => [
+        newChat,
+        ...previousChats,
+      ]);
+
+      setActiveChatId(currentChatId);
+    }
+
     const userMessage = {
       role: "user",
       content: trimmedMessage,
     };
 
-    setMessages((previousMessages) => [
-      ...previousMessages,
-      userMessage,
-    ]);
+    setChats((previousChats) =>
+      previousChats.map((chat) => {
+        if (chat.id !== currentChatId) {
+          return chat;
+        }
+
+        return {
+          ...chat,
+          title:
+            chat.messages.length === 0
+              ? trimmedMessage.slice(0, 30)
+              : chat.title,
+          messages: [
+            ...chat.messages,
+            userMessage,
+          ],
+        };
+      })
+    );
 
     setMessage("");
     setLoading(true);
@@ -52,20 +130,42 @@ function App() {
         content: data.answer,
       };
 
-      setMessages((previousMessages) => [
-        ...previousMessages,
-        assistantMessage,
-      ]);
+      setChats((previousChats) =>
+        previousChats.map((chat) => {
+          if (chat.id !== currentChatId) {
+            return chat;
+          }
+
+          return {
+            ...chat,
+            messages: [
+              ...chat.messages,
+              assistantMessage,
+            ],
+          };
+        })
+      );
     } catch (error) {
       console.error(error);
 
-      setMessages((previousMessages) => [
-        ...previousMessages,
-        {
-          role: "assistant",
-          content: "Something went wrong. Please try again.",
-        },
-      ]);
+      setChats((previousChats) =>
+        previousChats.map((chat) => {
+          if (chat.id !== currentChatId) {
+            return chat;
+          }
+
+          return {
+            ...chat,
+            messages: [
+              ...chat.messages,
+              {
+                role: "assistant",
+                content: "Something went wrong. Please try again.",
+              },
+            ],
+          };
+        })
+      );
     } finally {
       setLoading(false);
     }
@@ -78,64 +178,114 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <header className="header">
-        <h1>📚 Smart Librarian</h1>
-        <p>Your AI book recommendation assistant</p>
-      </header>
-
-      <main className="chat-container">
-        {messages.length === 0 && (
-          <div className="empty-state">
-            <h2>What would you like to read?</h2>
-            <p>
-              Tell me what themes, genres, or stories you enjoy.
-            </p>
-          </div>
-        )}
-
-        {messages.map((chatMessage, index) => (
-          <div
-            key={index}
-            className={`message ${chatMessage.role}`}
-          >
-            <div className="message-content">
-              {chatMessage.role === "assistant" ? (
-                <ReactMarkdown>
-                  {chatMessage.content}
-                </ReactMarkdown>
-              ) : (
-                chatMessage.content
-              )}
-            </div>
-          </div>
-        ))}
-
-        {loading && (
-          <div className="message assistant">
-            <div className="message-content">
-              Thinking...
-            </div>
-          </div>
-        )}
-      </main>
-
-      <div className="input-container">
-        <input
-          type="text"
-          value={message}
-          placeholder="Ask for a book recommendation..."
-          onChange={(event) => setMessage(event.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={loading}
-        />
+    <div className="layout">
+      <aside className="sidebar">
+        <div className="sidebar-brand">
+          <span>📚</span>
+          <h2>Smart Librarian</h2>
+        </div>
 
         <button
-          onClick={sendMessage}
-          disabled={loading || !message.trim()}
+          className="new-chat-button"
+          onClick={createNewChat}
         >
-          Send
+          + New Chat
         </button>
+
+        <div className="chat-history">
+          {chats.map((chat) => (
+            <div
+              key={chat.id}
+              className={`history-item ${
+                chat.id === activeChatId ? "active" : ""
+              }`}
+            >
+              <button
+                className="history-title"
+                onClick={() => setActiveChatId(chat.id)}
+              >
+                {chat.title}
+              </button>
+
+              <button
+                className="delete-button"
+                onClick={() => deleteChat(chat.id)}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      </aside>
+
+      <div className="app">
+        <header className="header">
+          <h1>Smart Librarian</h1>
+          <p>Your AI book recommendation assistant</p>
+        </header>
+
+        <main className="chat-container">
+          {!activeChat ||
+          activeChat.messages.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-icon">📖</div>
+
+              <h2>What would you like to read?</h2>
+
+              <p>
+                Tell me what kind of story, genre or theme
+                you're interested in and I'll recommend a book.
+              </p>
+            </div>
+          ) : (
+            activeChat.messages.map(
+              (chatMessage, index) => (
+                <div
+                  key={index}
+                  className={`message ${chatMessage.role}`}
+                >
+                  <div className="message-content">
+                    {chatMessage.role === "assistant" ? (
+                      <ReactMarkdown>
+                        {chatMessage.content}
+                      </ReactMarkdown>
+                    ) : (
+                      chatMessage.content
+                    )}
+                  </div>
+                </div>
+              )
+            )
+          )}
+
+          {loading && (
+            <div className="message assistant">
+              <div className="message-content">
+                Thinking...
+              </div>
+            </div>
+          )}
+        </main>
+
+        <div className="input-container">
+          <input
+            type="text"
+            value={message}
+            placeholder="Ask for a book recommendation..."
+            onChange={(event) =>
+              setMessage(event.target.value)
+            }
+            onKeyDown={handleKeyDown}
+            disabled={loading}
+          />
+
+          <button
+            onClick={sendMessage}
+            disabled={loading || !message.trim()}
+          >
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );
