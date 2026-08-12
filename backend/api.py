@@ -39,11 +39,9 @@ def root():
 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
-    answer = ask(request.message)
+    result = ask(request.message)
 
-    return ChatResponse(
-        answer=answer
-    )
+    return result
 
 
 @app.post("/api/index")
