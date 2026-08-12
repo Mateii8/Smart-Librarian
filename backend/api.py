@@ -28,6 +28,7 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
+    title: str
 
 
 @app.get("/")
@@ -41,7 +42,10 @@ def root():
 def chat(request: ChatRequest):
     result = ask(request.message)
 
-    return result
+    return ChatResponse(
+        answer=result["answer"],
+        title=result["title"]
+    )
 
 
 @app.post("/api/index")
