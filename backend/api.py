@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+from openai import OpenAI
+from src.config import OPENAI_API_KEY
 from src.chatbot import ask
 from src.data_loader import load_book_summaries
 from src.vector_store import index_books, collection_is_empty
@@ -12,6 +13,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,6 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class ImageRequest(BaseModel):
+    title: str
 
 class ChatRequest(BaseModel):
     message: str
@@ -60,4 +64,22 @@ def index_books_endpoint():
 
     return {
         "message": f"{len(books)} books indexed successfully."
+    }
+
+@app.post("/api/image")
+def generate_image(request: ImageRequest):
+    response = openai_client.images.generate(
+        model="gpt-image-1",
+        prompt=(
+            "Create an original fantasy illustration for a book recommendation app. "
+            "Use a magical school atmosphere, glowing books, candles, an old library, "
+            "mysterious corridors, friendship and adventure. "
+            "Do not depict copyrighted characters, logos, book covers, "
+            "or recognizable elements from an existing franchise."
+        ),
+        size="1024x1024"
+    )
+
+    return {
+        "image": response.data[0].b64_json
     }
