@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import HTTPException
 from pydantic import BaseModel
+from openai import BadRequestError
 from openai import OpenAI
 from src.config import OPENAI_API_KEY
 from src.chatbot import ask
@@ -68,18 +70,28 @@ def index_books_endpoint():
 
 @app.post("/api/image")
 def generate_image(request: ImageRequest):
-    response = openai_client.images.generate(
-        model="gpt-image-1",
-        prompt=(
-            "Create an original fantasy illustration for a book recommendation app. "
-            "Use a magical school atmosphere, glowing books, candles, an old library, "
-            "mysterious corridors, friendship and adventure. "
-            "Do not depict copyrighted characters, logos, book covers, "
-            "or recognizable elements from an existing franchise."
-        ),
-        size="1024x1024"
-    )
+    try:
+        response = openai_client.images.generate(
+            model="gpt-image-1",
+            prompt=(
+                "Create an original fantasy illustration for a book "
+                "recommendation application. "
+                "Show an atmospheric library, glowing books, magical light, "
+                "adventure and mystery. "
+                "Do not depict existing characters, logos, book covers, "
+                "celebrities or recognizable copyrighted characters."
+            ),
+            size="1024x1024"
+        )
 
-    return {
-        "image": response.data[0].b64_json
-    }
+        return {
+            "image": response.data[0].b64_json
+        }
+
+    except BadRequestError as error:
+        print(f"Image generation error: {error}")
+
+        raise HTTPException(
+            status_code=400,
+            detail="The image could not be generated. Please try again."
+        )

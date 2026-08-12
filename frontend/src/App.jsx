@@ -19,12 +19,24 @@ function App() {
     (chat) => chat.id === activeChatId
   );
 
-  useEffect(() => {
+useEffect(() => {
+  const chatsWithoutImages = chats.map((chat) => ({
+    ...chat,
+    messages: chat.messages.map((message) => ({
+      ...message,
+      image: null,
+    })),
+  }));
+
+  try {
     localStorage.setItem(
       "smart-librarian-chats",
-      JSON.stringify(chats)
+      JSON.stringify(chatsWithoutImages)
     );
-  }, [chats]);
+  } catch (error) {
+    console.error("Could not save chat history:", error);
+  }
+}, [chats]);
 
   const createNewChat = () => {
     const newChat = {
@@ -213,11 +225,13 @@ function App() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(
-          `HTTP error: ${response.status}`
-        );
-      }
+    if (!response.ok) {
+  const errorData = await response.json();
+
+  throw new Error(
+    errorData.detail || "Image generation failed."
+  );
+}
 
       const data = await response.json();
 
@@ -247,9 +261,9 @@ function App() {
       );
     } catch (error) {
       console.error(
-        "Image generation failed:",
-        error
+        "Image generation failed:",error
       );
+      alert(error.message);
     } finally {
       setImageLoading(null);
     }

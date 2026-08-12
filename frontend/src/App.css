@@ -564,3 +564,43 @@ input {
   border-radius: 10px;
 }
 
+.generate-image-button {
+  margin-top: 18px;
+
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #4f46e5;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.generate-image-button:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.generate-image-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.generated-image {
+  display: block;
+
+  width: 100%;
+  max-width: 500px;
+
+  margin-top: 18px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+}
