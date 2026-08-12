@@ -34,7 +34,6 @@ function App() {
 
   const messagesEndRef = useRef(null);
 
-  // Save chats
 
   useEffect(() => {
 
@@ -58,7 +57,6 @@ function App() {
 
   }, [chats]);
 
-  // Auto scroll
 
   useEffect(() => {
 
