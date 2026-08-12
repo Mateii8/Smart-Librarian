@@ -101,4 +101,7 @@ Books retrieved from ChromaDB:
         input=tool_outputs
     )
 
-    return final_response.output_text
+    return {
+        "answer": final_response.output_text,
+        "title": title
+    }
