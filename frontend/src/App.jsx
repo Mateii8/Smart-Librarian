@@ -5,6 +5,7 @@ import "./App.css";
 function App() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(null);
 
   const [chats, setChats] = useState(() => {
     const savedChats = localStorage.getItem("smart-librarian-chats");
@@ -90,10 +91,12 @@ function App() {
 
         return {
           ...chat,
+
           title:
             chat.messages.length === 0
               ? trimmedMessage.slice(0, 30)
               : chat.title,
+
           messages: [
             ...chat.messages,
             userMessage,
@@ -110,9 +113,11 @@ function App() {
         "http://127.0.0.1:8000/api/chat",
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
           },
+
           body: JSON.stringify({
             message: trimmedMessage,
           }),
@@ -120,7 +125,9 @@ function App() {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
+        throw new Error(
+          `HTTP error: ${response.status}`
+        );
       }
 
       const data = await response.json();
@@ -128,7 +135,10 @@ function App() {
       const assistantMessage = {
         role: "assistant",
         content: data.answer,
+        title: data.title,
+        image: null,
       };
+
 
       setChats((previousChats) =>
         previousChats.map((chat) => {
@@ -138,6 +148,7 @@ function App() {
 
           return {
             ...chat,
+
             messages: [
               ...chat.messages,
               assistantMessage,
@@ -156,11 +167,13 @@ function App() {
 
           return {
             ...chat,
+
             messages: [
               ...chat.messages,
               {
                 role: "assistant",
-                content: "Something went wrong. Please try again.",
+                content:
+                  "Something went wrong. Please try again.",
               },
             ],
           };
@@ -171,6 +184,78 @@ function App() {
     }
   };
 
+  const generateImage = async (
+    chatId,
+    messageIndex,
+    title
+  ) => {
+    if (!title) {
+      return;
+    }
+
+    const loadingId = `${chatId}-${messageIndex}`;
+
+    setImageLoading(loadingId);
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/image",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            title: title,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error: ${response.status}`
+        );
+      }
+
+      const data = await response.json();
+
+      setChats((previousChats) =>
+        previousChats.map((chat) => {
+          if (chat.id !== chatId) {
+            return chat;
+          }
+
+          return {
+            ...chat,
+
+            messages: chat.messages.map(
+              (chatMessage, index) => {
+                if (index !== messageIndex) {
+                  return chatMessage;
+                }
+
+                return {
+                  ...chatMessage,
+                  image: data.image,
+                };
+              }
+            ),
+          };
+        })
+      );
+    } catch (error) {
+      console.error(
+        "Image generation failed:",
+        error
+      );
+    } finally {
+      setImageLoading(null);
+    }
+  };
+
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       sendMessage();
@@ -179,7 +264,10 @@ function App() {
 
   return (
     <div className="layout">
+
+
       <aside className="sidebar">
+
         <div className="sidebar-brand">
           <span>📚</span>
           <h2>Smart Librarian</h2>
@@ -193,81 +281,161 @@ function App() {
         </button>
 
         <div className="chat-history">
+
           {chats.map((chat) => (
             <div
               key={chat.id}
               className={`history-item ${
-                chat.id === activeChatId ? "active" : ""
+                chat.id === activeChatId
+                  ? "active"
+                  : ""
               }`}
             >
+
               <button
                 className="history-title"
-                onClick={() => setActiveChatId(chat.id)}
+                onClick={() =>
+                  setActiveChatId(chat.id)
+                }
               >
                 {chat.title}
               </button>
 
               <button
                 className="delete-button"
-                onClick={() => deleteChat(chat.id)}
+                onClick={() =>
+                  deleteChat(chat.id)
+                }
               >
                 ×
               </button>
+
             </div>
           ))}
+
         </div>
+
       </aside>
 
+
       <div className="app">
+
         <header className="header">
           <h1>Smart Librarian</h1>
-          <p>Your AI book recommendation assistant</p>
+
+          <p>
+            Your AI book recommendation assistant
+          </p>
         </header>
 
         <main className="chat-container">
+
+
           {!activeChat ||
           activeChat.messages.length === 0 ? (
-            <div className="empty-state">
-              <div className="empty-icon">📖</div>
 
-              <h2>What would you like to read?</h2>
+            <div className="empty-state">
+
+              <div className="empty-icon">
+                📖
+              </div>
+
+              <h2>
+                What would you like to read?
+              </h2>
 
               <p>
-                Tell me what kind of story, genre or theme
-                you're interested in and I'll recommend a book.
+                Tell me what kind of story,
+                genre or theme you're interested
+                in and I'll recommend a book.
               </p>
+
             </div>
+
           ) : (
+
+
             activeChat.messages.map(
               (chatMessage, index) => (
+
                 <div
                   key={index}
                   className={`message ${chatMessage.role}`}
                 >
+
                   <div className="message-content">
-                    {chatMessage.role === "assistant" ? (
-                      <ReactMarkdown>
-                        {chatMessage.content}
-                      </ReactMarkdown>
+
+                    {chatMessage.role ===
+                    "assistant" ? (
+
+                      <>
+                        <ReactMarkdown>
+                          {chatMessage.content}
+                        </ReactMarkdown>
+
+
+                        {chatMessage.title && (
+                          <button
+                            className="generate-image-button"
+                            disabled={
+                              imageLoading ===
+                              `${activeChat.id}-${index}`
+                            }
+                            onClick={() =>
+                              generateImage(
+                                activeChat.id,
+                                index,
+                                chatMessage.title
+                              )
+                            }
+                          >
+                            {imageLoading ===
+                            `${activeChat.id}-${index}`
+                              ? "Generating..."
+                              : "Generate image"}
+                          </button>
+                        )}
+
+
+                        {chatMessage.image && (
+                          <img
+                            className="generated-image"
+                            src={`data:image/png;base64,${chatMessage.image}`}
+                            alt={`Generated illustration for ${chatMessage.title}`}
+                          />
+                        )}
+
+                      </>
+
                     ) : (
+
                       chatMessage.content
+
                     )}
+
                   </div>
+
                 </div>
               )
             )
           )}
 
+
           {loading && (
             <div className="message assistant">
+
               <div className="message-content">
                 Thinking...
               </div>
+
             </div>
           )}
+
         </main>
 
+
         <div className="input-container">
+
           <input
             type="text"
             value={message}
@@ -281,12 +449,17 @@ function App() {
 
           <button
             onClick={sendMessage}
-            disabled={loading || !message.trim()}
+            disabled={
+              loading || !message.trim()
+            }
           >
             Send
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }
