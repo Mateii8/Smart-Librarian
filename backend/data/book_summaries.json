@@ -21,5 +21,81 @@
 
   "Pride and Prejudice": "Elizabeth Bennet navigates family expectations, social class and romance in nineteenth-century England. Her relationship with the wealthy Mr. Darcy evolves from misunderstanding and prejudice to mutual respect and love. The novel explores themes of family, marriage, social status, personal growth and first impressions.",
 
-  "To Kill a Mockingbird": "Scout Finch grows up in a small Southern town where her father, lawyer Atticus Finch, defends a Black man falsely accused of a crime. Through Scout's eyes, readers witness injustice, racism and moral courage. The novel explores equality, justice, compassion and the importance of standing up for what is right."
+  "To Kill a Mockingbird": "Scout Finch grows up in a small Southern town where her father, lawyer Atticus Finch, defends a Black man falsely accused of a crime. Through Scout's eyes, readers witness injustice, racism and moral courage. The novel explores equality, justice, compassion and the importance of standing up for what is right.",
+
+  "The Great Gatsby": "Nick Carraway becomes fascinated by his wealthy and mysterious neighbor Jay Gatsby, whose extravagant lifestyle is driven by his desire to reunite with Daisy Buchanan. Gatsby's pursuit of an idealized past reveals the darker side of wealth, ambition and the American Dream.",
+
+  "Moby-Dick": "Ishmael joins the crew of the Pequod, a whaling ship commanded by Captain Ahab. The voyage becomes increasingly dangerous as Ahab reveals his obsessive desire to hunt Moby Dick, the enormous white whale that injured him. The novel explores obsession, revenge, fate and humanity's relationship with nature.",
+
+  "Jane Eyre": "Jane Eyre grows from an orphaned child into an independent young woman who becomes a governess at Thornfield Hall. There she develops feelings for the mysterious Edward Rochester but discovers secrets that challenge her principles. The novel explores independence, love, morality and social expectations.",
+
+  "Wuthering Heights": "The lives of the Earnshaw and Linton families become shaped by the intense relationship between Heathcliff and Catherine Earnshaw. Their love, pride and resentment create consequences that affect multiple generations. The novel explores passion, revenge, social class and destructive obsession.",
+
+  "Crime and Punishment": "Rodion Raskolnikov, a poor former student, commits a murder after convincing himself that extraordinary people may stand above ordinary moral rules. His guilt and psychological suffering gradually overwhelm him as investigators close in. The novel explores morality, crime, guilt and redemption.",
+
+  "The Brothers Karamazov": "The turbulent relationship between Fyodor Karamazov and his sons leads to conflict, jealousy and tragedy. Through their different personalities and beliefs, the novel examines questions of faith, free will, morality, family responsibility and the existence of evil.",
+
+  "The Picture of Dorian Gray": "Dorian Gray wishes that a portrait of him would age while he remains young and beautiful. His wish mysteriously comes true, allowing him to pursue a life of pleasure while the portrait reflects his moral corruption. The story explores beauty, vanity, morality and the consequences of selfish choices.",
+
+  "Dracula": "Jonathan Harker travels to the castle of Count Dracula and discovers that his mysterious host is a vampire. After Dracula travels to England, a group led by Professor Van Helsing attempts to stop him. The novel combines horror, suspense and supernatural conflict while exploring fear and the struggle between good and evil.",
+
+  "Frankenstein": "Victor Frankenstein becomes obsessed with discovering the secret of life and creates a living being from dead material. Horrified by his creation, he abandons it, leading to loneliness, anger and tragedy. The novel explores scientific ambition, responsibility, isolation and the consequences of rejecting others.",
+
+  "The Catcher in the Rye": "Holden Caulfield leaves his school and spends several days wandering through New York City. Frustrated by what he sees as the dishonesty of the adult world, he struggles with loneliness, grief and uncertainty about growing up. The novel explores adolescence, identity and alienation.",
+
+  "Animal Farm": "The animals of Manor Farm rebel against their human owner and attempt to build a society based on equality. Over time, the pigs gain increasing power and recreate many of the injustices they originally opposed. The story examines revolution, propaganda, corruption and political power.",
+
+  "The Handmaid's Tale": "Offred lives in Gilead, a totalitarian society where women have lost most of their rights and are assigned strict social roles. As a Handmaid, she is forced into reproductive servitude while remembering the freedom she once had. The novel explores oppression, power, gender and resistance.",
+
+  "Dune": "Paul Atreides travels with his family to Arrakis, a desert planet that produces the most valuable substance in the universe. Political betrayal forces Paul into the desert, where he becomes connected with the native Fremen and a larger struggle over power, religion and destiny.",
+
+  "The Hunger Games": "Katniss Everdeen volunteers to participate in the Hunger Games, a televised competition in which young people are forced to fight to the death. Her struggle for survival gradually becomes a symbol of resistance against the Capitol. The novel explores sacrifice, inequality, rebellion and authoritarian power.",
+
+  "The Giver": "Jonas lives in a carefully controlled community where pain, conflict and difficult choices have been eliminated. When he becomes the Receiver of Memory, he learns about emotions, history and experiences hidden from everyone else. His discoveries cause him to question the price of his society's apparent perfection.",
+
+  "The Road": "A father and his young son travel across a devastated landscape after an unspecified catastrophe. With food and safety becoming increasingly scarce, they struggle to survive while trying to preserve compassion and hope. The novel explores family, morality, survival and humanity.",
+
+  "The Martian": "Astronaut Mark Watney is accidentally left behind on Mars after his crew believes he has died. With limited supplies and no immediate rescue, he relies on engineering, science and humor to stay alive. Meanwhile, NASA and his crew work to find a way to bring him home.",
+
+  "The Hitchhiker's Guide to the Galaxy": "Arthur Dent is rescued moments before Earth is destroyed and suddenly finds himself traveling through space. Accompanied by unusual characters, he encounters strange planets, civilizations and absurd situations. The novel combines science fiction, adventure and comedy.",
+
+  "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe": "Peter, Susan, Edmund and Lucy discover the magical land of Narnia through an ordinary wardrobe. Narnia is trapped in endless winter under the rule of the White Witch. With the help of Aslan and their new allies, the children become involved in the fight to restore freedom.",
+
+  "Percy Jackson and the Lightning Thief": "Percy Jackson discovers that the Greek gods are real and that he is the son of Poseidon. After Zeus's lightning bolt disappears, Percy begins a dangerous journey across America to prevent a conflict among the gods. Along the way, he learns about friendship, courage and his own identity.",
+
+  "The Name of the Wind": "Kvothe, once a famous musician, magician and adventurer, tells the story of his life. He describes his childhood, the tragedy that changed his family, his education at the University and his search for knowledge about mysterious forces. The novel explores talent, storytelling, magic and identity.",
+
+  "A Game of Thrones": "Several noble families become involved in a dangerous struggle for political power across the Seven Kingdoms. While alliances and betrayals reshape the realm, an ancient threat begins to emerge beyond the northern border. The novel explores family, loyalty, ambition and the cost of power.",
+
+  "The Shining": "Jack Torrance accepts a job as the winter caretaker of the isolated Overlook Hotel and moves there with his wife and young son. As supernatural forces inside the hotel grow stronger, Jack's mental state deteriorates. The story explores isolation, family conflict, addiction and supernatural horror.",
+
+  "It": "A group of friends in the town of Derry confronts a terrifying entity that often appears in the form of a clown. Years later, they return as adults when the creature begins terrorizing the town again. The novel explores childhood fear, friendship, memory and courage.",
+
+  "The Girl with the Dragon Tattoo": "Journalist Mikael Blomkvist is hired to investigate the decades-old disappearance of a young woman from a wealthy family. He works with skilled hacker Lisbeth Salander, and their investigation uncovers hidden crimes and disturbing family secrets.",
+
+  "Gone Girl": "When Amy Dunne disappears on her wedding anniversary, suspicion quickly falls on her husband Nick. As the investigation develops, secrets about their marriage emerge and public opinion becomes increasingly important. The novel explores deception, manipulation, identity and relationships.",
+
+  "Murder on the Orient Express": "Detective Hercule Poirot is traveling aboard the Orient Express when a passenger is found murdered. With the train trapped by snow and the killer apparently still aboard, Poirot investigates the passengers and their hidden connections to the victim.",
+
+  "The Da Vinci Code": "Robert Langdon becomes involved in a murder investigation at the Louvre and discovers a trail of hidden symbols and historical clues. Together with cryptologist Sophie Neveu, he follows a mystery involving art, secret organizations and religious history.",
+
+  "The Fault in Our Stars": "Hazel Grace Lancaster meets Augustus Waters through a support group for young people living with cancer. Their friendship develops into a romantic relationship as they share humor, fears and questions about life. The novel explores love, mortality, loss and the desire to leave a meaningful impact.",
+
+  "Me Before You": "Louisa Clark becomes the caregiver of Will Traynor, a wealthy young man whose life changed dramatically after an accident. Their initially difficult relationship develops into a close bond that challenges both of them to reconsider their expectations about life, happiness and personal choice.",
+
+  "The Notebook": "Noah and Allie fall in love despite differences in social class and the expectations of their families. Their relationship is tested by separation and time, but their connection remains powerful. The novel explores lasting love, memory, devotion and the choices that shape relationships.",
+
+  "Little Women": "The four March sisters grow up together while their family faces financial difficulties and their father is away during the Civil War. Each sister develops different ambitions and dreams while learning about love, responsibility, family and adulthood.",
+
+  "The Kite Runner": "Amir grows up in Afghanistan alongside Hassan, the son of his father's servant and his closest childhood companion. After betraying Hassan during a traumatic event, Amir carries guilt into adulthood. Years later, he receives an opportunity to return and seek redemption.",
+
+  "Life of Pi": "Pi Patel survives the sinking of a ship carrying his family and animals from their zoo. He becomes stranded in the Pacific Ocean on a lifeboat with a Bengal tiger named Richard Parker. His extraordinary journey tests his intelligence, faith and determination to survive.",
+
+  "The Count of Monte Cristo": "Edmond Dantès is falsely accused of treason and imprisoned because of the jealousy and ambition of others. After escaping and discovering a hidden fortune, he reinvents himself as the Count of Monte Cristo and carefully plans revenge against those responsible for his suffering.",
+
+  "The Old Man and the Sea": "Santiago, an aging Cuban fisherman, has gone many days without catching a fish. Far out at sea, he hooks an enormous marlin and begins a long struggle against the powerful animal and the forces of nature. The story explores perseverance, dignity and endurance.",
+
+  "The Secret Garden": "After losing her parents, Mary Lennox is sent to live at her uncle's large and mysterious home in England. She discovers a locked and neglected garden and begins restoring it with new friends. The garden becomes a source of friendship, healing and personal transformation.",
+
+  "Alice's Adventures in Wonderland": "Alice follows a White Rabbit down a hole and enters Wonderland, a strange world where normal rules no longer apply. She encounters unusual creatures, confusing conversations and impossible situations while trying to understand the bizarre world around her."
 }
