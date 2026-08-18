@@ -9,7 +9,8 @@ from src.chatbot import ask
 from src.data_loader import load_book_summaries
 from src.vector_store import index_books, collection_is_empty
 from typing import Optional
-
+import json
+from pathlib import Path
 
 app = FastAPI(
     title="Smart Librarian API",
@@ -96,3 +97,14 @@ def generate_image(request: ImageRequest):
             status_code=400,
             detail="The image could not be generated. Please try again."
         )
+
+@app.get("/api/books/count")
+def get_books_count():
+    file_path = Path(__file__).parent / "data" / "book_summaries.json"
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        books = json.load(file)
+
+    return {
+        "count": len(books)
+    }
