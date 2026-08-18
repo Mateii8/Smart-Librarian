@@ -352,6 +352,7 @@ function App() {
           imageLoading={imageLoading}
           generateImage={generateImage}
           messagesEndRef={messagesEndRef}
+          setMessage={setMessage}
         />
 
         <ChatInput

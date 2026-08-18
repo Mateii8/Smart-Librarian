@@ -7,6 +7,7 @@ function Chat({
   imageLoading,
   generateImage,
   messagesEndRef,
+  setMessage,
 }) {
 
   return (
@@ -16,7 +17,7 @@ function Chat({
       {!activeChat ||
       activeChat.messages.length === 0 ? (
 
-        <EmptyState />
+        <EmptyState setMessage={setMessage} />
 
       ) : (
 

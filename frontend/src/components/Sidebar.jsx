@@ -11,6 +11,9 @@ function Sidebar({
       <div className="sidebar-brand">
         <span>📚</span>
         <h2>Smart Librarian</h2>
+        <p className="sidebar-description">
+          AI powered book recommendation assistant.
+        </p>
       </div>
 
       <button
@@ -19,6 +22,20 @@ function Sidebar({
       >
         + New Chat
       </button>
+
+      <div className="sidebar-stats">
+
+  <div className="stat-card">
+    <span>{chats.length}</span>
+    <p>Conversations</p>
+  </div>
+
+  <div className="stat-card">
+    <span>12</span>
+    <p>Books</p>
+  </div>
+
+</div>
 
       <div className="chat-history">
 
