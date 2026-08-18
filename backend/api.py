@@ -8,6 +8,7 @@ from src.config import OPENAI_API_KEY
 from src.chatbot import ask
 from src.data_loader import load_book_summaries
 from src.vector_store import index_books, collection_is_empty
+from typing import Optional
 
 
 app = FastAPI(
@@ -34,7 +35,7 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
-    title: str
+    title: Optional[str] = None
 
 
 @app.get("/")

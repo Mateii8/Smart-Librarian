@@ -28,6 +28,63 @@ def build_context(books: list[dict]) -> str:
 def ask(question: str) -> str:
     books = search_books(question)
 
+    question_lower = question.lower().strip()
+
+    greetings = [
+        "salut",
+        "buna",
+        "bună",
+        "hello",
+        "hi",
+        "hey",
+        "neata",
+        "bună dimineața",
+        "buna dimineata",
+        "bună seara",
+        "buna seara",
+    ]
+
+    if question_lower in greetings:
+        return {
+            "answer": (
+                "Salut! 👋 Eu sunt Smart Librarian.\n\n"
+                "Te pot ajuta să găsești cărți în funcție de genul, tema sau subiectul care te interesează și îți pot oferi un rezumat detaliat al cărților recomandate.\n\n"
+                "Spune-mi ce fel de carte cauți!"
+            ),
+            "title": None
+        }
+
+    if question_lower in [
+        "ce faci",
+        "ce faci?",
+        "cum esti",
+        "cum ești",
+        "cum esti?",
+        "cum ești?"
+    ]:
+        return {
+            "answer": (
+                "Sunt bine, mulțumesc! 😊\n\n"
+                "Sunt gata să te ajut să găsești următoarea carte pe care să o citești."
+            ),
+            "title": None
+        }
+
+    if question_lower in [
+        "ce poti face",
+        "ce poți face",
+        "ce poti face?",
+        "ce poți face?"
+    ]:
+        return {
+            "answer": (
+                "Pot să îți recomand cărți în funcție de preferințele tale, "
+                "să găsesc cărți pe baza temelor sau genurilor și să îți ofer "
+                "rezumate detaliate ale cărților recomandate."
+            ),
+            "title": None
+        }
+
     if not books:
         return "I could not find a suitable book in the database."
 
