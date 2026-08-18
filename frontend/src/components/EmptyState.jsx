@@ -1,4 +1,4 @@
-function EmptyState({ setMessage }) {
+function EmptyState({ setMessage,sendMessage }) {
   const suggestions = [
     "Recommend a fantasy book",
     "Recommend a dystopian novel",
@@ -14,7 +14,10 @@ function EmptyState({ setMessage }) {
       <h1>Smart Librarian</h1>
 
       <p className="subtitle">
-        Discover your next favorite book using AI-powered recommendations.
+        Find your next favorite book.
+      </p>
+      <p className="subtitle">
+        Choose one of the categories below or ask your own question
       </p>
 
       <div className="suggestions">
@@ -24,7 +27,10 @@ function EmptyState({ setMessage }) {
           <button
             key={suggestion}
             className="suggestion-button"
-            onClick={() => setMessage(suggestion)}
+            onClick={() => {
+              setMessage(suggestion);
+              sendMessage(suggestion);
+            }}
           >
             {suggestion}
           </button>
@@ -32,10 +38,6 @@ function EmptyState({ setMessage }) {
         ))}
 
       </div>
-
-      <p className="hint">
-        Or type your own request below.
-      </p>
 
     </div>
   );

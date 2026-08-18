@@ -99,9 +99,9 @@ function App() {
 
   };
 
-  const sendMessage = async () => {
+  const sendMessage = async (customMessage = null) => {
 
-    const trimmedMessage = message.trim();
+    const trimmedMessage = (customMessage ?? message).trim();
 
     if (!trimmedMessage || loading) {
       return;
@@ -353,6 +353,7 @@ function App() {
           generateImage={generateImage}
           messagesEndRef={messagesEndRef}
           setMessage={setMessage}
+          sendMessage={sendMessage}
         />
 
         <ChatInput

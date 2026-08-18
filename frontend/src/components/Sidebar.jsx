@@ -20,8 +20,7 @@ function Sidebar({
     </h2>
 
     <p>
-      AI powered book
-      recommendation assistant
+      Discover your next favorite book
     </p>
 
   </div>

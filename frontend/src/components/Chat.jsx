@@ -8,6 +8,7 @@ function Chat({
   generateImage,
   messagesEndRef,
   setMessage,
+  sendMessage,
 }) {
 
   return (
@@ -17,7 +18,7 @@ function Chat({
       {!activeChat ||
       activeChat.messages.length === 0 ? (
 
-        <EmptyState setMessage={setMessage} />
+        <EmptyState setMessage={setMessage} sendMessage={sendMessage} />
 
       ) : (
 
