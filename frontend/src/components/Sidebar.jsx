@@ -1,3 +1,6 @@
+import { FiSearch } from "react-icons/fi";
+import { useState } from "react";
+
 function Sidebar({
   chats,
   activeChatId,
@@ -5,27 +8,43 @@ function Sidebar({
   createNewChat,
   deleteChat,
 }) {
+  const [search, setSearch] = useState("");
+
+  const filteredChats = chats.filter((chat) =>
+    chat.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <aside className="sidebar">
 
       <div className="sidebar-brand">
 
+        <h2>
+          Smart
+          <br />
+          Librarian
+        </h2>
 
-  <div className="brand-text">
+        <p className="sidebar-subtitle">
+          Discover your next favorite book
+        </p>
 
-    <h2>
-      Smart
-      <br />
-      Librarian
-    </h2>
+      </div>
 
-    <p>
-      Discover your next favorite book
-    </p>
+      <div className="search-container">
 
-  </div>
+        <FiSearch className="search-icon" />
 
-</div>
+        <input
+          type="text"
+          placeholder="Search chats..."
+          value={search}
+          onChange={(event) =>
+            setSearch(event.target.value)
+          }
+        />
+
+      </div>
 
       <button
         className="new-chat-button"
@@ -33,24 +52,28 @@ function Sidebar({
       >
         + New Chat
       </button>
-  
-       <div className="sidebar-stats">
 
-  <div className="stat-card">
-    <span>12</span>
-    <p>Books</p>
-  </div>
+      <div className="sidebar-stats">
 
-  <div className="stat-card">
-    <span>{chats.length}</span>
-    <p>Chats</p>
-  </div>
+        <div className="stat-card">
+          <span>12</span>
+          <p>Books</p>
+        </div>
 
-</div>
-      <h3 className="sidebar-section-title">Recent chats</h3>
+        <div className="stat-card">
+          <span>{chats.length}</span>
+          <p>Chats</p>
+        </div>
+
+      </div>
+
+      <h3 className="sidebar-section-title">
+        Recent chats
+      </h3>
+
       <div className="chat-history">
 
-        {chats.map((chat) => (
+        {filteredChats.map((chat) => (
 
           <div
             key={chat.id}
