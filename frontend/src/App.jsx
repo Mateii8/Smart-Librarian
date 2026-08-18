@@ -37,18 +37,15 @@ function App() {
 
   useEffect(() => {
 
-    const chatsWithoutImages = chats.map(
-      (chat) => ({
-        ...chat,
-
-        messages: chat.messages.map(
-          (message) => ({
-            ...message,
-            image: null,
-          })
-        ),
-      })
-    );
+    const chatsWithoutImages = chats
+  .filter((chat) => chat.messages.length > 0)
+  .map((chat) => ({
+    ...chat,
+    messages: chat.messages.map((message) => ({
+      ...message,
+      image: null,
+    })),
+  }));
 
     localStorage.setItem(
       "smart-librarian-chats",
@@ -66,24 +63,46 @@ function App() {
 
   }, [activeChat]);
 
-  const createNewChat = () => {
+  const removeEmptyChat = (chatId) => {
+  if (!chatId) return;
 
-    const newChat = {
-      id: Date.now(),
-      title: "New conversation",
-      messages: [],
-    };
+  setChats((previousChats) =>
+    previousChats.filter(
+      (chat) =>
+        chat.id !== chatId ||
+        chat.messages.length > 0
+    )
+  );
+};
 
-    setChats((previousChats) => [
-      newChat,
-      ...previousChats,
-    ]);
-
-    setActiveChatId(newChat.id);
-
-    setMessage("");
-
+ const createNewChat = () => {
+  const newChat = {
+    id: Date.now(),
+    title: "New conversation",
+    messages: [],
   };
+
+  setChats((previousChats) => [
+    newChat,
+    ...previousChats.filter(
+      (chat) =>
+        chat.id !== activeChatId ||
+        chat.messages.length > 0
+    ),
+  ]);
+
+  setActiveChatId(newChat.id);
+  setMessage("");
+};
+
+const selectChat = (chatId) => {
+  if (activeChatId && activeChatId !== chatId) {
+    removeEmptyChat(activeChatId);
+  }
+
+  setActiveChatId(chatId);
+  setMessage("");
+};
 
   const deleteChat = (chatId) => {
 
@@ -331,7 +350,7 @@ function App() {
       <Sidebar
         chats={chats}
         activeChatId={activeChatId}
-        setActiveChatId={setActiveChatId}
+        selectChat={selectChat}
         createNewChat={createNewChat}
         deleteChat={deleteChat}
       />

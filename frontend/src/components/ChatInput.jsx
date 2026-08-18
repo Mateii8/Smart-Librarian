@@ -1,9 +1,4 @@
-function ChatInput({
-  message,
-  setMessage,
-  sendMessage,
-  loading,
-}) {
+function ChatInput({ message, setMessage, sendMessage, loading }) {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       sendMessage();
@@ -12,25 +7,18 @@ function ChatInput({
 
   return (
     <div className="input-container">
-
       <input
         type="text"
         value={message}
         placeholder="Ask for a book recommendation..."
-        onChange={(event) =>
-          setMessage(event.target.value)
-        }
+        onChange={(event) => setMessage(event.target.value)}
         onKeyDown={handleKeyDown}
         disabled={loading}
       />
 
-      <button
-        onClick={sendMessage}
-        disabled={loading || !message.trim()}
-      >
+      <button onClick={sendMessage} disabled={loading || !message.trim()}>
         Send
       </button>
-
     </div>
   );
 }

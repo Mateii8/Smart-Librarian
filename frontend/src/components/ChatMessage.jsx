@@ -7,69 +7,39 @@ function ChatMessage({
   imageLoading,
   generateImage,
 }) {
-
   return (
-    <div
-      className={`message ${chatMessage.role}`}
-    >
-
+    <div className={`message ${chatMessage.role}`}>
       <div className="message-content">
-
         {chatMessage.role === "assistant" ? (
-
           <>
-
-            <ReactMarkdown>
-              {chatMessage.content}
-            </ReactMarkdown>
+            <ReactMarkdown>{chatMessage.content}</ReactMarkdown>
 
             {chatMessage.title && (
-
               <button
                 className="generate-image-button"
-                disabled={
-                  imageLoading ===
-                  `${activeChat.id}-${index}`
-                }
+                disabled={imageLoading === `${activeChat.id}-${index}`}
                 onClick={() =>
-                  generateImage(
-                    activeChat.id,
-                    index,
-                    chatMessage.title
-                  )
+                  generateImage(activeChat.id, index, chatMessage.title)
                 }
               >
-                {imageLoading ===
-                `${activeChat.id}-${index}`
-
+                {imageLoading === `${activeChat.id}-${index}`
                   ? "Generating..."
-
                   : "Generate image"}
-
               </button>
-
             )}
 
             {chatMessage.image && (
-
               <img
                 className="generated-image"
                 src={`data:image/png;base64,${chatMessage.image}`}
                 alt={chatMessage.title}
               />
-
             )}
-
           </>
-
         ) : (
-
           chatMessage.content
-
         )}
-
       </div>
-
     </div>
   );
 }

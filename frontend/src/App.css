@@ -156,11 +156,9 @@ input {
   border: none;
   border-radius: 12px;
 
-  background: linear-gradient(
-    135deg,
-    #5b4df5,
-    #4f46e5
-  );
+  background: linear-gradient(135deg,
+      #5b4df5,
+      #4f46e5);
 
   color: #ffffff;
 
@@ -649,11 +647,9 @@ input {
   padding: 20px 34px 26px;
 
   background:
-    linear-gradient(
-      to top,
+    linear-gradient(to top,
       #f1f5f9 72%,
-      rgba(241, 245, 249, 0)
-    );
+      rgba(241, 245, 249, 0));
 }
 
 .input-container input {

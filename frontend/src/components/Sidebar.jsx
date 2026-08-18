@@ -4,7 +4,7 @@ import { useState } from "react";
 function Sidebar({
   chats,
   activeChatId,
-  setActiveChatId,
+  selectChat,
   createNewChat,
   deleteChat,
 }) {
@@ -87,7 +87,7 @@ function Sidebar({
             <button
               className="history-title"
               onClick={() =>
-                setActiveChatId(chat.id)
+                selectChat(chat.id)
               }
             >
               {chat.title}
