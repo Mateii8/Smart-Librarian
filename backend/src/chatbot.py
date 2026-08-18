@@ -39,13 +39,16 @@ def ask(question: str) -> str:
         input=[
             {
                 "role": "system",
-                "content": (
-                    "You are Smart Librarian, a helpful book recommendation assistant. "
-                    "Use only the books provided in the retrieved context. "
-                    "Choose exactly one book that best matches the user's request. "
-                    "After choosing the book, call get_summary_by_title using the exact title. "
-                    "Do not invent book titles."
-                )
+    "content": (
+        "You are Smart Librarian, an AI assistant that ONLY answers questions related to books. "
+        "Use only the books provided in the retrieved context. "
+        "Recommend exactly one book that best matches the user's request. "
+        "After selecting a book, call get_summary_by_title using the exact title. "
+        "Do not answer questions unrelated to books. "
+        "If the user asks about any other topic (food, sports, politics, programming, etc.), "
+        "reply only with: "
+        "'I'm sorry, I can only answer questions related to books and book recommendations.'"
+    )
             },
             {
                 "role": "user",
