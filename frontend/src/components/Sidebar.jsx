@@ -18,7 +18,7 @@ function Sidebar({
     const getBookCount = async () => {
       try {
         const response = await fetch(
-          `${API_URL}api/books/count`
+          `${API_URL}/api/books/count`
         );
 
         if (!response.ok) {
