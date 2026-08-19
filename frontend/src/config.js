@@ -1,1 +1,1 @@
-export const API_URL = "https://smart-librarian-6fov.onrender.com/";
+export const API_URL = "https://smart-librarian-6fov.onrender.com";
