@@ -53,9 +53,15 @@ def root():
 def chat(request: ChatRequest):
     result = ask(request.message)
 
+    if isinstance(result, str):
+        return ChatResponse(
+            answer=result,
+            title=None
+        )
+
     return ChatResponse(
         answer=result["answer"],
-        title=result["title"]
+        title=result.get("title")
     )
 
 
