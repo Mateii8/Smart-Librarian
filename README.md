@@ -1,10 +1,10 @@
-# 📚 Smart Librarian
+#  Smart Librarian
 
 Smart Librarian is an AI-powered book recommendation application built with **Python, FastAPI, React, OpenAI and ChromaDB**.
 
 The application recommends books based on the user's interests using **Retrieval-Augmented Generation (RAG)** and uses **Tool Calling** to retrieve a detailed summary of the recommended book.
 
-## ✨ Features
+##  Features
 
 - Semantic book search with ChromaDB
 - OpenAI embeddings using `text-embedding-3-small`
@@ -16,7 +16,7 @@ The application recommends books based on the user's interests using **Retrieval
 - React + Vite frontend
 - CLI version also available
 
-## 🛠 Technologies
+##  Technologies
 
 **Backend**
 - Python
@@ -31,7 +31,7 @@ The application recommends books based on the user's interests using **Retrieval
 - CSS
 - React Markdown
 
-## 🧠 How it works
+##  How it works
 
 ```text
 User Question
@@ -55,7 +55,7 @@ Short book descriptions and themes are stored in `book_summaries.md` and used fo
 
 Detailed summaries are stored in `book_summaries.json` and retrieved through Tool Calling after GPT selects a book.
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 Smart-Librarian/
@@ -87,7 +87,7 @@ Smart-Librarian/
 └── README.md
 ```
 
-## 🚀 Running the project
+##  Running the project
 
 ### Backend
 
@@ -138,7 +138,7 @@ http://localhost:5173
 
 Both backend and frontend must be running at the same time.
 
-## 💬 Example questions
+##  Example questions
 
 - `I want a fantasy story with magic and friendship.`
 - `Recommend a book about war.`
@@ -146,7 +146,7 @@ Both backend and frontend must be running at the same time.
 - `I want something about freedom and social control.`
 - `Recommend a dystopian novel.`
 
-## 🔑 Environment
+##  Environment
 
 The OpenAI API key is stored in the backend `.env` file and is never exposed to the React frontend.
 
@@ -156,7 +156,7 @@ Use `.env.example` as a template:
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-## 📌 Assignment Requirements
+##  Assignment Requirements
 
 The project implements the main requirements of the Smart Librarian assignment:
 
