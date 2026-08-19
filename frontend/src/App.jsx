@@ -195,7 +195,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${API_URL}api/chat`,
+        `${API_URL}/api/chat`,
         {
           method: "POST",
 
@@ -293,7 +293,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${API_URL}api/image`,
+        `${API_URL}/api/image`,
         {
           method: "POST",
 
