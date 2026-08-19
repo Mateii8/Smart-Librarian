@@ -1,9 +1,10 @@
 function ChatInput({ message, setMessage, sendMessage, loading }) {
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      sendMessage();
-    }
-  };
+ const handleKeyDown = (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    sendMessage();
+  }
+};
 
   return (
     <div className="input-container">
@@ -16,7 +17,10 @@ function ChatInput({ message, setMessage, sendMessage, loading }) {
         disabled={loading}
       />
 
-      <button onClick={sendMessage} disabled={loading || !message.trim()}>
+      <button
+        onClick={() => sendMessage()}
+        disabled={loading || !message.trim()}
+      >
         Send
       </button>
     </div>

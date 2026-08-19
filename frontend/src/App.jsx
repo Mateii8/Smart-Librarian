@@ -134,9 +134,10 @@ function App() {
   const sendMessage = async (
     customMessage = null
   ) => {
-    const trimmedMessage = (
-      customMessage ?? message
-    ).trim();
+    const trimmedMessage =
+  typeof customMessage === "string"
+    ? customMessage.trim()
+    : message.trim();;
 
     if (!trimmedMessage || loading) {
       return;
