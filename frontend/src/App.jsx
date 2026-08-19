@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import {API_URL} from "./config.js";
 
 import "./App.css";
 
@@ -194,7 +195,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/chat",
+        `${API_URL}api/chat`,
         {
           method: "POST",
 
@@ -292,7 +293,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/image",
+        `${API_URL}api/image`,
         {
           method: "POST",
 
