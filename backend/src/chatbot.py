@@ -33,23 +33,20 @@ def ask(question: str) -> str:
     greetings = [
         "salut",
         "buna",
-        "bună",
         "hello",
         "hi",
         "hey",
         "neata",
-        "bună dimineața",
         "buna dimineata",
-        "bună seara",
         "buna seara",
     ]
 
     if question_lower in greetings:
         return {
             "answer": (
-                "Salut! 👋 Eu sunt Smart Librarian.\n\n"
-                "Te pot ajuta să găsești cărți în funcție de genul, tema sau subiectul care te interesează și îți pot oferi un rezumat detaliat al cărților recomandate.\n\n"
-                "Spune-mi ce fel de carte cauți!"
+                "Salut! Eu sunt Smart Librarian.\n\n"
+                "Te pot ajuta sa gasesti carti in functie de genul, tema sau subiectul care te intereseazs si iti pot oferi un rezumat detaliat al cartilor recomandate.\n\n"
+                "Spune-mi ce fel de carte cauti!"
             ),
             "title": None
         }
@@ -58,29 +55,25 @@ def ask(question: str) -> str:
         "ce faci",
         "ce faci?",
         "cum esti",
-        "cum ești",
         "cum esti?",
-        "cum ești?"
     ]:
         return {
             "answer": (
-                "Sunt bine, mulțumesc! 😊\n\n"
-                "Sunt gata să te ajut să găsești următoarea carte pe care să o citești."
+                "Sunt bine, multumesc!\n\n"
+                "Sunt gata sa te ajut sa gasesti urmatoarea carte pe care sa o citesti."
             ),
             "title": None
         }
 
     if question_lower in [
         "ce poti face",
-        "ce poți face",
         "ce poti face?",
-        "ce poți face?"
     ]:
         return {
             "answer": (
-                "Pot să îți recomand cărți în funcție de preferințele tale, "
-                "să găsesc cărți pe baza temelor sau genurilor și să îți ofer "
-                "rezumate detaliate ale cărților recomandate."
+                "Pot să iti recomand carti in functie de preferintele tale, "
+                "sa gasesc carti pe baza temelor sau genurilor si sa iti ofer "
+                "rezumate detaliate ale cartilor recomandate."
             ),
             "title": None
         }
