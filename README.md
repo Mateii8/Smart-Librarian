@@ -28,7 +28,6 @@ The application recommends books based on the user's interests using **Retrieval
 - Vite
 - JavaScript
 - CSS
-- React Markdown
 
 ##  How it works
 
