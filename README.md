@@ -152,7 +152,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 The project implements the main requirements of the Smart Librarian assignment:
 
-- 10+ books knowledge base
+- 50 books knowledge base
 - ChromaDB vector store
 - OpenAI embeddings
 - Semantic retrieval
@@ -160,5 +160,4 @@ The project implements the main requirements of the Smart Librarian assignment:
 - RAG
 - `get_summary_by_title()` tool
 - OpenAI Tool Calling
-- CLI interface
 - Browser interface with React + FastAPI
