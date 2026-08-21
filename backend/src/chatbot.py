@@ -145,7 +145,10 @@ Books retrieved from ChromaDB:
         )
 
     if not tool_outputs:
-        return "The model did not call the summary tool."
+        return {
+            "answer": first_response.output_text,
+            "title": None
+        }
 
     final_response = client.responses.create(
         model=GPT_MODEL,
