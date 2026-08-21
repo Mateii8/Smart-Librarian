@@ -14,7 +14,6 @@ The application recommends books based on the user's interests using **Retrieval
 - Detailed summaries stored locally in JSON
 - FastAPI REST backend
 - React + Vite frontend
-- CLI version also available
 
 ##  Technologies
 
